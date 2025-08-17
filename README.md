@@ -1,63 +1,57 @@
-# TypeScript React Tailwind Vite Template
+# ATS Resume Builder
 
-This template provides a starting point for creating React projects with TypeScript, Tailwind CSS, and Vite.
-
-## Overview
-
-This template allows you to quickly set up a React project with TypeScript, Tailwind CSS, and Vite. It provides a modern development environment with features such as hot module replacement and fast refresh, making it easy to develop and customize your React applications.
+This is a web-based application that helps you create professional, ATS-friendly resumes in minutes.
 
 ## Features
 
-- TypeScript: Develop with confidence using static type-checking and improved tooling.
+*   **Live Preview:** See your changes in real-time as you build your resume.
+*   **Multiple Templates:** Choose from a variety of templates to match your style. (This is a future feature, but good to mention)
+*   **PDF Export:** Download your resume as a PDF file that is optimized for applicant tracking systems.
+*   **Themeable:** Customize the look and feel of the application with light and dark themes.
+*   **Responsive Design:** Build your resume on any device, whether it's a desktop, tablet, or smartphone.
 
-- React: Build dynamic user interfaces with the popular React library.
+## Tech Stack
 
-- Tailwind CSS: Easily style and customize your components using the utility-first approach of Tailwind CSS.
-
-- Vite: Enjoy fast development and instant hot module replacement with Vite's lightning-fast dev server.
+*   **Frontend:**
+    *   [React](https://reactjs.org/)
+    *   [TypeScript](https://www.typescriptlang.org/)
+    *   [Tailwind CSS](https://tailwindcss.com/)
+    *   [Vite](https://vitejs.dev/)
+*   **PDF Generation:**
+    *   [jsPDF](https://github.com/parallax/jsPDF)
+    *   [html2canvas](https://html2canvas.hertzen.com/)
 
 ## Installation
 
-To create a new project using this template, follow these steps:
+To get started with the project, follow these steps:
 
-1. Ensure that you have Node.js installed on your machine.
-2. Open a terminal and navigate to the directory where you want to create your project.
-3. Run the following command to create a new project using the template:
+1.  Clone the repository:
 
-```bash
-npx create-vite@latest --template typescript-react-tailwind-vite my-project
-```
+    ```bash
+    git clone https://github.com/your-username/ats-resume-builder.git
+    ```
 
-Replace my-project with the desired name for your project.
+2.  Install the dependencies:
 
-4. Once the command completes, navigate into the project directory:
+    ```bash
+    cd ats-resume-builder
+    npm install
+    ```
 
-```bash
-cd my-project
-```
+3.  Start the development server:
 
-5. Install the dependencies:
+    ```bash
+    npm run dev
+    ```
 
-```bash
-npm install
-```
+This will start the development server and open the application in your browser at `http://localhost:5173/`.
 
 ## Usage
 
-To start the development server and run the project, use the following command:
+1.  Fill out the resume form with your personal information, work experience, education, and skills.
+2.  As you fill out the form, you will see a live preview of your resume on the right side of the screen.
+3.  Once you are happy with your resume, click the "Download" button to export it as a PDF file.
 
-```bash
-npm run dev
-```
+## Contributing
 
-This will start the development server and open your project in the browser. Any changes you make to the source code will be automatically reflected in the browser.
-
-## Building for Production
-
-To build the project for production, use the following command:
-
-```bash
-npm run build
-```
-
-This will create an optimized build of your project in the dist directory.
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
