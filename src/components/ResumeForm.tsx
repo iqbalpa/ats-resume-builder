@@ -130,14 +130,17 @@ const ResumeForm: FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 p-4 md:p-6 shadow-lg max-h-[calc(100vh-120px)] overflow-y-auto transition-colors duration-200">
-      <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-gray-800 dark:text-white">Resume Builder</h2>
+    <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-6 md:p-8 shadow-soft-lg rounded-2xl max-h-[calc(100vh-120px)] overflow-y-auto transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:shadow-glow">
+      <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Resume Builder</h2>
       
-      <div className="space-y-6">
+      <div className="space-y-8">
         {/* Header Information */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3 text-gray-700 dark:text-gray-300 dark:text-gray-300">Personal Information</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="animate-fade-in">
+          <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300 flex items-center">
+            <div className="w-1 h-6 bg-gradient-to-b from-primary-500 to-primary-600 rounded-full mr-3"></div>
+            Personal Information
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Full Name
@@ -146,7 +149,7 @@ const ResumeForm: FC = () => {
                 type="text"
                 value={resumeData.header.name}
                 onChange={(e) => handleHeaderChange("name", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="John Doe"
               />
             </div>
@@ -158,7 +161,7 @@ const ResumeForm: FC = () => {
                 type="text"
                 value={resumeData.header.location}
                 onChange={(e) => handleHeaderChange("location", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="New York, NY"
               />
             </div>
@@ -170,7 +173,7 @@ const ResumeForm: FC = () => {
                 type="email"
                 value={resumeData.header.email}
                 onChange={(e) => handleHeaderChange("email", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="john.doe@email.com"
               />
             </div>
@@ -182,7 +185,7 @@ const ResumeForm: FC = () => {
                 type="tel"
                 value={resumeData.header.phone}
                 onChange={(e) => handleHeaderChange("phone", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="(555) 123-4567"
               />
             </div>
@@ -194,7 +197,7 @@ const ResumeForm: FC = () => {
                 type="text"
                 value={resumeData.header.linkedin}
                 onChange={(e) => handleHeaderChange("linkedin", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="linkedin.com/in/johndoe"
               />
             </div>
@@ -206,27 +209,39 @@ const ResumeForm: FC = () => {
                 type="text"
                 value={resumeData.header.github}
                 onChange={(e) => handleHeaderChange("github", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="github.com/johndoe"
               />
             </div>
           </div>
         </div>
 
+        {/* Section Divider */}
+        <div className="flex items-center my-8">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+          <div className="mx-4">
+            <div className="w-2 h-2 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full"></div>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+        </div>
+
         {/* Professional Experience */}
-        <div>
-          <div className="flex justify-between items-center mb-3">
-            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Professional Experience</h3>
+        <div className="animate-fade-in">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 flex items-center">
+              <div className="w-1 h-6 bg-gradient-to-b from-primary-500 to-primary-600 rounded-full mr-3"></div>
+              Professional Experience
+            </h3>
             <button
               onClick={addExperience}
-              className="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 whitespace-nowrap"
+              className="px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-sm rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-200 shadow-soft hover:shadow-soft-lg btn-smooth whitespace-nowrap"
             >
               Add Experience
             </button>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {resumeData.experiences.map((exp) => (
-              <div key={exp.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <div key={exp.id} className="border border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-gray-50/30 dark:bg-gray-800/30 backdrop-blur-sm transition-all duration-200 hover:shadow-soft animate-scale-in">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -236,7 +251,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={exp.role}
                       onChange={(e) => updateExperience(exp.id, "role", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="Software Engineer"
                     />
                   </div>
@@ -248,7 +263,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={exp.company}
                       onChange={(e) => updateExperience(exp.id, "company", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="Tech Company Inc."
                     />
                   </div>
@@ -260,7 +275,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={exp.startDate}
                       onChange={(e) => updateExperience(exp.id, "startDate", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="January 2022"
                     />
                   </div>
@@ -297,7 +312,7 @@ const ResumeForm: FC = () => {
                     </label>
                     <button
                       onClick={() => addBullet(exp.id)}
-                      className="px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600"
+                      className="px-3 py-1.5 bg-gradient-to-r from-gray-500 to-gray-600 text-white text-xs rounded-lg hover:from-gray-600 hover:to-gray-700 transition-all duration-200 shadow-sm hover:shadow btn-smooth"
                     >
                       Add Bullet
                     </button>
@@ -315,7 +330,7 @@ const ResumeForm: FC = () => {
                         {exp.bullets.length > 1 && (
                           <button
                             onClick={() => removeBullet(exp.id, index)}
-                            className="px-2 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600"
+                            className="px-3 py-1.5 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-sm hover:shadow btn-smooth"
                           >
                             Remove
                           </button>
@@ -327,7 +342,7 @@ const ResumeForm: FC = () => {
                 
                 <button
                   onClick={() => removeExperience(exp.id)}
-                  className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
+                  className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-soft hover:shadow btn-smooth"
                 >
                   Remove Experience
                 </button>
@@ -336,20 +351,32 @@ const ResumeForm: FC = () => {
           </div>
         </div>
 
+        {/* Section Divider */}
+        <div className="flex items-center my-8">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+          <div className="mx-4">
+            <div className="w-2 h-2 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full"></div>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+        </div>
+
         {/* Education */}
-        <div>
-          <div className="flex justify-between items-center mb-3">
-            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Education</h3>
+        <div className="animate-fade-in">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 flex items-center">
+              <div className="w-1 h-6 bg-gradient-to-b from-primary-500 to-primary-600 rounded-full mr-3"></div>
+              Education
+            </h3>
             <button
               onClick={addEducation}
-              className="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 whitespace-nowrap"
+              className="px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-sm rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-200 shadow-soft hover:shadow-soft-lg btn-smooth whitespace-nowrap"
             >
               Add Education
             </button>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {resumeData.education.map((edu) => (
-              <div key={edu.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <div key={edu.id} className="border border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-gray-50/30 dark:bg-gray-800/30 backdrop-blur-sm transition-all duration-200 hover:shadow-soft animate-scale-in">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -359,7 +386,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={edu.degree}
                       onChange={(e) => updateEducationItem(edu.id, "degree", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="Bachelor of Science in Computer Science"
                     />
                   </div>
@@ -371,7 +398,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={edu.school}
                       onChange={(e) => updateEducationItem(edu.id, "school", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="University of Technology"
                     />
                   </div>
@@ -383,7 +410,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={edu.startDate}
                       onChange={(e) => updateEducationItem(edu.id, "startDate", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="September 2018"
                     />
                   </div>
@@ -395,14 +422,14 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={edu.endDate}
                       onChange={(e) => updateEducationItem(edu.id, "endDate", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="May 2022"
                     />
                   </div>
                 </div>
                 <button
                   onClick={() => removeEducation(edu.id)}
-                  className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
+                  className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-soft hover:shadow btn-smooth"
                 >
                   Remove Education
                 </button>
@@ -411,20 +438,32 @@ const ResumeForm: FC = () => {
           </div>
         </div>
 
+        {/* Section Divider */}
+        <div className="flex items-center my-8">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+          <div className="mx-4">
+            <div className="w-2 h-2 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full"></div>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+        </div>
+
         {/* Projects */}
-        <div>
-          <div className="flex justify-between items-center mb-3">
-            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Projects & Achievements</h3>
+        <div className="animate-fade-in">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 flex items-center">
+              <div className="w-1 h-6 bg-gradient-to-b from-primary-500 to-primary-600 rounded-full mr-3"></div>
+              Projects & Achievements
+            </h3>
             <button
               onClick={addProject}
-              className="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 whitespace-nowrap"
+              className="px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-sm rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-200 shadow-soft hover:shadow-soft-lg btn-smooth whitespace-nowrap"
             >
               Add Project
             </button>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {resumeData.projects.map((project) => (
-              <div key={project.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <div key={project.id} className="border border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-gray-50/30 dark:bg-gray-800/30 backdrop-blur-sm transition-all duration-200 hover:shadow-soft animate-scale-in">
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -434,7 +473,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={project.name}
                       onChange={(e) => updateProject(project.id, "name", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="E-commerce Platform"
                     />
                   </div>
@@ -445,7 +484,7 @@ const ResumeForm: FC = () => {
                     <textarea
                       value={project.description}
                       onChange={(e) => updateProject(project.id, "description", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       rows={3}
                       placeholder="Built a full-stack e-commerce application with React, Node.js, and MongoDB..."
                     />
@@ -462,20 +501,32 @@ const ResumeForm: FC = () => {
           </div>
         </div>
 
+        {/* Section Divider */}
+        <div className="flex items-center my-8">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+          <div className="mx-4">
+            <div className="w-2 h-2 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full"></div>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+        </div>
+
         {/* Certifications */}
-        <div>
-          <div className="flex justify-between items-center mb-3">
-            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Certifications</h3>
+        <div className="animate-fade-in">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 flex items-center">
+              <div className="w-1 h-6 bg-gradient-to-b from-primary-500 to-primary-600 rounded-full mr-3"></div>
+              Certifications
+            </h3>
             <button
               onClick={addCertification}
-              className="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 whitespace-nowrap"
+              className="px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-sm rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-200 shadow-soft hover:shadow-soft-lg btn-smooth whitespace-nowrap"
             >
               Add Certification
             </button>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {resumeData.certifications.map((cert) => (
-              <div key={cert.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <div key={cert.id} className="border border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-gray-50/30 dark:bg-gray-800/30 backdrop-blur-sm transition-all duration-200 hover:shadow-soft animate-scale-in">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -485,7 +536,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={cert.name}
                       onChange={(e) => updateCertification(cert.id, "name", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="AWS Solutions Architect"
                     />
                   </div>
@@ -497,7 +548,7 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={cert.issuer}
                       onChange={(e) => updateCertification(cert.id, "issuer", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="Amazon Web Services"
                     />
                   </div>
@@ -509,14 +560,14 @@ const ResumeForm: FC = () => {
                       type="text"
                       value={cert.date}
                       onChange={(e) => updateCertification(cert.id, "date", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="March 2023"
                     />
                   </div>
                 </div>
                 <button
                   onClick={() => removeCertification(cert.id)}
-                  className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
+                  className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-soft hover:shadow btn-smooth"
                 >
                   Remove Certification
                 </button>
@@ -525,9 +576,21 @@ const ResumeForm: FC = () => {
           </div>
         </div>
 
+        {/* Section Divider */}
+        <div className="flex items-center my-8">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+          <div className="mx-4">
+            <div className="w-2 h-2 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full"></div>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+        </div>
+
         {/* Skills */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3 text-gray-700 dark:text-gray-300">Skills</h3>
+        <div className="animate-fade-in">
+          <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300 flex items-center">
+            <div className="w-1 h-6 bg-gradient-to-b from-primary-500 to-primary-600 rounded-full mr-3"></div>
+            Skills
+          </h3>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Skills (comma separated)
@@ -535,7 +598,7 @@ const ResumeForm: FC = () => {
             <textarea
               value={skillsInput}
               onChange={(e) => handleSkillsChange(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
               rows={3}
               placeholder="JavaScript, TypeScript, React, Node.js, Python, SQL, MongoDB, AWS, Git, Docker"
             />

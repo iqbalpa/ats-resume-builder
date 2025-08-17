@@ -7,7 +7,7 @@ const ThemeToggle: FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700"
+      className="p-3 rounded-xl transition-all duration-300 hover:bg-gray-200/70 dark:hover:bg-gray-700/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:shadow-soft btn-smooth focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50"
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
       {theme === 'light' ? (

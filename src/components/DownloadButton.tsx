@@ -27,10 +27,10 @@ const DownloadButton: FC<DownloadButtonProps> = () => {
       onClick={handleDownload}
       disabled={isGenerating}
       className={`
-        px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold text-white transition-all duration-200 text-sm md:text-base
+        px-6 py-3 md:px-8 md:py-4 rounded-2xl font-semibold text-white transition-all duration-300 text-sm md:text-base btn-smooth
         ${isGenerating 
           ? 'bg-gray-400 cursor-not-allowed' 
-          : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-lg hover:shadow-xl'
+          : 'bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 shadow-soft-lg hover:shadow-glow border border-primary-500/20'
         }
       `}
     >
