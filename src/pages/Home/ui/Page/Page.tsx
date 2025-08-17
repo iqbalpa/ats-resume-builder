@@ -25,7 +25,10 @@ const Home: FC = () => {
             <div className="order-1 xl:order-2">
               <div className="xl:sticky xl:top-8">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-2 sm:space-y-0">
-                  <h2 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white">Live Preview</h2>
+                  <div>
+                    <h2 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white">Live Preview</h2>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">A4 Format (210 × 297 mm) • 1 Page Only</p>
+                  </div>
                   <DownloadButton resumeElementRef={resumeRef} />
                 </div>
                 <div className="bg-white border rounded-lg overflow-hidden">

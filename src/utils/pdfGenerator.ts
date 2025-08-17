@@ -14,7 +14,7 @@ export interface PDFOptions {
 export const generatePDF = (element: HTMLElement, options: PDFOptions = {}) => {
   const {
     filename = 'resume.pdf',
-    margin = 0.5,
+    margin = 12.7, // Default A4 margin in mm (0.5 inch)
     pagebreak = {
       mode: ['avoid-all', 'css', 'legacy'],
       before: '.page-break-before',
@@ -34,11 +34,11 @@ export const generatePDF = (element: HTMLElement, options: PDFOptions = {}) => {
       scrollX: 0,
       scrollY: 0,
       width: element.scrollWidth,
-      height: element.scrollHeight
+      height: Math.min(element.scrollHeight, 842) // A4 height in pixels at 96dpi ≈ 842px
     },
     jsPDF: { 
-      unit: 'in', 
-      format: 'letter', 
+      unit: 'mm', 
+      format: 'a4', 
       orientation: 'portrait',
       compress: true
     },
@@ -48,9 +48,9 @@ export const generatePDF = (element: HTMLElement, options: PDFOptions = {}) => {
   // Clone the element to avoid modifying the original
   const clonedElement = element.cloneNode(true) as HTMLElement;
   
-  // Apply PDF-specific styles to ensure ATS compatibility
-  clonedElement.style.width = '8.5in';
-  clonedElement.style.maxWidth = '8.5in';
+  // Apply PDF-specific styles to ensure ATS compatibility (A4 width: 210mm ≈ 8.27in)
+  clonedElement.style.width = '210mm';
+  clonedElement.style.maxWidth = '210mm';
   clonedElement.style.backgroundColor = '#ffffff';
   clonedElement.style.color = '#000000';
   clonedElement.style.fontFamily = 'Arial, sans-serif';
@@ -76,10 +76,14 @@ export const downloadResumeAsPDF = (resumeElement: HTMLElement, candidateName?: 
     
   return generatePDF(resumeElement, {
     filename,
-    margin: [0.5, 0.5, 0.5, 0.5], // top, right, bottom, left
+    margin: [12.7, 12.7, 12.7, 12.7], // A4 margins in mm (0.5in = 12.7mm)
     pagebreak: {
       mode: ['avoid-all'],
       avoid: '.no-page-break'
-    }
+    },
+    // Additional options to ensure single page
+    enableLinks: false,
+    width: 210, // A4 width in mm
+    height: 297 // A4 height in mm
   });
 };

@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
-import { useResume, Experience, Education, Project } from "@/contexts/ResumeContext";
+import { useResume, Experience, Education, Project, Certification } from "@/contexts/ResumeContext";
 
 const ResumeForm: FC = () => {
-  const { resumeData, updateHeader, updateExperiences, updateEducation, updateProjects, updateSkills } = useResume();
+  const { resumeData, updateHeader, updateExperiences, updateEducation, updateProjects, updateCertifications, updateSkills } = useResume();
   const [skillsInput, setSkillsInput] = useState(resumeData.skills.join(", "));
 
   const handleHeaderChange = (field: string, value: string) => {
@@ -106,6 +106,27 @@ const ResumeForm: FC = () => {
 
   const removeProject = (id: string) => {
     updateProjects(resumeData.projects.filter(proj => proj.id !== id));
+  };
+
+  const addCertification = () => {
+    const newCertification: Certification = {
+      id: Date.now().toString(),
+      name: "",
+      issuer: "",
+      date: ""
+    };
+    updateCertifications([...resumeData.certifications, newCertification]);
+  };
+
+  const updateCertification = (id: string, field: keyof Certification, value: string) => {
+    const updated = resumeData.certifications.map(cert => 
+      cert.id === id ? { ...cert, [field]: value } : cert
+    );
+    updateCertifications(updated);
+  };
+
+  const removeCertification = (id: string) => {
+    updateCertifications(resumeData.certifications.filter(cert => cert.id !== id));
   };
 
   return (
@@ -435,6 +456,69 @@ const ResumeForm: FC = () => {
                   className="mt-4 px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
                 >
                   Remove Project
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Certifications */}
+        <div>
+          <div className="flex justify-between items-center mb-3">
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Certifications</h3>
+            <button
+              onClick={addCertification}
+              className="px-3 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 whitespace-nowrap"
+            >
+              Add Certification
+            </button>
+          </div>
+          <div className="space-y-4">
+            {resumeData.certifications.map((cert) => (
+              <div key={cert.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Certification Name
+                    </label>
+                    <input
+                      type="text"
+                      value={cert.name}
+                      onChange={(e) => updateCertification(cert.id, "name", e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      placeholder="AWS Solutions Architect"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Issuer
+                    </label>
+                    <input
+                      type="text"
+                      value={cert.issuer}
+                      onChange={(e) => updateCertification(cert.id, "issuer", e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      placeholder="Amazon Web Services"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Date Obtained
+                    </label>
+                    <input
+                      type="text"
+                      value={cert.date}
+                      onChange={(e) => updateCertification(cert.id, "date", e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      placeholder="March 2023"
+                    />
+                  </div>
+                </div>
+                <button
+                  onClick={() => removeCertification(cert.id)}
+                  className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
+                >
+                  Remove Certification
                 </button>
               </div>
             ))}
