@@ -1,14 +1,9 @@
-import { FC, forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { useResume } from "@/contexts/ResumeContext";
 
-const ResumePreview = forwardRef<HTMLDivElement>((props, ref) => {
+const ResumePreview = forwardRef<HTMLDivElement>((_, ref) => {
   const { resumeData } = useResume();
   const [isOverflowing, setIsOverflowing] = useState(false);
-
-  const formatDateRange = (startDate: string, endDate: string, current: boolean) => {
-    if (current) return `${startDate} - Present`;
-    return `${startDate} - ${endDate}`;
-  };
 
   const hasContent = (obj: any): boolean => {
     if (Array.isArray(obj)) return obj.length > 0;

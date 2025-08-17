@@ -29,8 +29,6 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
     let yPosition = 15; // Smaller top margin to match preview
     const leftMargin = 15; // Smaller left margin to match preview
     const rightMargin = 195; // Adjusted right margin
-    const lineHeight = 3;
-    const sectionSpacing = 6;
 
     // Helper function to add text with word wrap
     const addText = (text: string, x: number, y: number, options: any = {}) => {
@@ -118,7 +116,7 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
       yPosition += 5; // Less space after line to match preview
       
       resumeData.experiences.forEach((exp, index) => {
-        if (index > 0) yPosition += 4; // Less space between experiences
+        if (index > 0) yPosition += 4; // Less space between experiencesyan
         
         // Company and Role with dates on same line
         const jobTitle = `${exp.company}${exp.company && exp.role ? ' / ' : ''}${exp.role}`;
