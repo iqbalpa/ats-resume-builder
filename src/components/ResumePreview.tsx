@@ -146,6 +146,38 @@ const ResumePreview = forwardRef<HTMLDivElement>((_, ref) => {
         </section>
       )}
 
+      {/* Certifications Section */}
+      {hasContent(resumeData.certifications) && (
+        <section style={{marginBottom: '16px', pageBreakInside: 'avoid'}}>
+          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '2px'}}>
+            Certifications
+          </h2>
+          <hr style={{
+            border: 'none',
+            borderTop: '1px solid #000',
+            margin: '0 0 8px 0',
+            padding: 0,
+            height: 0,
+            backgroundColor: 'transparent'
+          }} />
+          <div>
+            {resumeData.certifications.map((cert, index) => (
+              <div key={cert.id} style={{marginBottom: index < resumeData.certifications.length - 1 ? '6px' : '0'}}>
+                <div style={{marginBottom: '2px'}}>
+                  <div style={{display: 'inline-block', width: '70%'}}>
+                    <strong>{cert.name}</strong>
+                    {cert.issuer && <div style={{fontSize: '11px'}}>{cert.issuer}</div>}
+                  </div>
+                  <div style={{display: 'inline-block', width: '30%', textAlign: 'right', fontSize: '10px', fontStyle: 'italic', color: '#666'}}>
+                    {cert.date}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Skills Section */}
       {hasContent(resumeData.skills) && (
         <section style={{marginBottom: '16px', pageBreakInside: 'avoid'}}>

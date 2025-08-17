@@ -116,7 +116,7 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
       yPosition += 5; // Less space after line to match preview
       
       resumeData.experiences.forEach((exp, index) => {
-        if (index > 0) yPosition += 4; // Less space between experiencesyan
+        if (index > 0) yPosition += 2; // Less space between experiencesyan
         
         // Company and Role with dates on same line
         const jobTitle = `${exp.company}${exp.company && exp.role ? ' / ' : ''}${exp.role}`;
@@ -155,7 +155,7 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
       yPosition += 5; // Less space after line to match preview
       
       resumeData.education.forEach((edu, index) => {
-        if (index > 0) yPosition += 5;
+        if (index > 0) yPosition += 2;
         
         // School name with dates on same line
         if (edu.school) {
@@ -175,8 +175,6 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
         if (edu.degree) {
           yPosition = addText(edu.degree, leftMargin, yPosition, { fontSize: 11 }); // Body: 11px
         }
-        
-        yPosition += 2; // Small space after education item
       });
       yPosition += 4; // Reduced space between sections
     }
@@ -189,7 +187,7 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
       yPosition += 5; // Less space after line to match preview
       
       resumeData.projects.forEach((project, index) => {
-        if (index > 0) yPosition += 3;
+        if (index > 0) yPosition += 2;
         
         if (project.name) {
           yPosition = addText(project.name, leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' }); // Item title: 12px
@@ -197,6 +195,37 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
         
         if (project.description) {
           yPosition = addText(project.description, leftMargin, yPosition, { fontSize: 11 }); // Body: 11px
+        }
+      });
+      yPosition += 4; // Reduced space between sections
+    }
+
+    // Certifications Section
+    if (resumeData.certifications && resumeData.certifications.length > 0) {
+      yPosition = addText('Certifications', leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' });
+      yPosition -= 2.5; // Reduce space above horizontal line
+      yPosition = addHorizontalLine(yPosition); // Line under title
+      yPosition += 5; // Less space after line to match preview
+      
+      resumeData.certifications.forEach((cert, index) => {
+        if (index > 0) yPosition += 2;
+        
+        // Certification name with date on same line
+        if (cert.name) {
+          yPosition = addText(cert.name, leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' }); // Item title: 12px
+          
+          // Date (on same line, right-aligned)
+          if (cert.date) {
+            pdf.setFontSize(10);
+            pdf.setFont('helvetica', 'italic');
+            const dateWidth = pdf.getTextWidth(cert.date);
+            pdf.text(cert.date, rightMargin - dateWidth, yPosition - 4);
+          }
+        }
+        
+        // Issuer on next line
+        if (cert.issuer) {
+          yPosition = addText(cert.issuer, leftMargin, yPosition, { fontSize: 11 }); // Body: 11px
         }
       });
       yPosition += 4; // Reduced space between sections
