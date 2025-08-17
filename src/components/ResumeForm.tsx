@@ -283,23 +283,23 @@ const ResumeForm: FC = () => {
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       End Date
                     </label>
-                    <div className="flex items-center space-x-2">
+                    <div className="space-y-2">
                       <input
                         type="text"
                         value={exp.endDate}
                         onChange={(e) => updateExperience(exp.id, "endDate", e.target.value)}
                         disabled={exp.current}
-                        className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white disabled:bg-gray-100"
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-gray-50/50 dark:bg-gray-700/50 text-gray-900 dark:text-white transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500 disabled:bg-gray-100/50 dark:disabled:bg-gray-800/50 disabled:cursor-not-allowed"
                         placeholder="December 2023"
                       />
-                      <label className="flex items-center">
+                      <label className="flex items-center text-sm text-gray-600 dark:text-gray-400">
                         <input
                           type="checkbox"
                           checked={exp.current}
                           onChange={(e) => updateExperience(exp.id, "current", e.target.checked)}
-                          className="mr-1"
+                          className="mr-2 w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
-                        <span className="text-sm">Current</span>
+                        <span>Currently working here</span>
                       </label>
                     </div>
                   </div>
