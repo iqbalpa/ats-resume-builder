@@ -23,11 +23,11 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check localStorage first, then system preference
+    // Check localStorage first, then default to dark mode
     const savedTheme = localStorage.getItem('resume-builder-theme') as Theme;
     if (savedTheme) return savedTheme;
     
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return 'dark'; // Default to dark mode
   });
 
   const toggleTheme = () => {
