@@ -131,8 +131,6 @@ const ResumeForm: FC = () => {
 
   return (
     <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm p-6 md:p-8 shadow-soft-lg rounded-2xl max-h-[calc(100vh-120px)] overflow-y-auto transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 hover:shadow-glow">
-      <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Resume Builder</h2>
-      
       <div className="space-y-8">
         {/* Header Information */}
         <div className="animate-fade-in">
