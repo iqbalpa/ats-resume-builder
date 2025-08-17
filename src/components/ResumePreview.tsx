@@ -46,8 +46,8 @@ const ResumePreview = forwardRef<HTMLDivElement>((props, ref) => {
             resumeData.header.location,
             resumeData.header.email, 
             resumeData.header.phone,
-            resumeData.header.linkedin,
-            resumeData.header.github
+            resumeData.header.linkedin ? 'LinkedIn' : null,
+            resumeData.header.github ? 'GitHub' : null
           ].filter(Boolean).join(' | ')}
         </div>
       </header>
