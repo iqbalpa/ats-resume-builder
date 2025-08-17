@@ -3,22 +3,17 @@ import { useResume } from '@/contexts/ResumeContext';
 import { downloadResumeAsPDF } from '@/utils';
 
 interface DownloadButtonProps {
-  resumeElementRef: React.RefObject<HTMLDivElement>;
+  // No longer need the ref since we're using text-based PDF generation
 }
 
-const DownloadButton: FC<DownloadButtonProps> = ({ resumeElementRef }) => {
+const DownloadButton: FC<DownloadButtonProps> = () => {
   const { resumeData } = useResume();
   const [isGenerating, setIsGenerating] = useState(false);
 
   const handleDownload = async () => {
-    if (!resumeElementRef.current) {
-      alert('Resume preview not found. Please make sure the preview is visible.');
-      return;
-    }
-
     try {
       setIsGenerating(true);
-      await downloadResumeAsPDF(resumeElementRef.current, resumeData.header.name);
+      await downloadResumeAsPDF(resumeData, resumeData.header.name);
     } catch (error) {
       console.error('Error generating PDF:', error);
       alert('Error generating PDF. Please try again.');

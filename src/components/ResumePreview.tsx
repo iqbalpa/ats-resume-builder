@@ -35,7 +35,7 @@ const ResumePreview = forwardRef<HTMLDivElement>((props, ref) => {
   }, [resumeData, ref]);
 
   return (
-    <div ref={ref} className="bg-white shadow-lg mx-auto text-black no-page-break relative" style={{fontFamily: 'Arial, Helvetica, sans-serif', width: '210mm', height: '297mm', overflow: 'hidden', fontSize: '11px', lineHeight: '1.3', padding: '0.5in'}}>
+    <div ref={ref} className="bg-white shadow-lg mx-auto text-black no-page-break relative" style={{fontFamily: 'Arial, Helvetica, sans-serif', maxWidth: '100%', width: '210mm', height: 'auto', minHeight: '297mm', fontSize: '11px', lineHeight: '1.3', paddingTop: '0.3in', paddingBottom: '0.2in', paddingLeft: '0.4in', paddingRight: '0.4in'}}>
       {/* Header Section */}
       <header className="mb-4">
         <h1 style={{fontSize: '16px', fontWeight: 'bold', marginBottom: '2px'}}>
@@ -54,23 +54,33 @@ const ResumePreview = forwardRef<HTMLDivElement>((props, ref) => {
 
       {/* Professional Experience Section */}
       {hasContent(resumeData.experiences) && (
-        <section className="mb-3">
-          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '4px'}}>
+        <section style={{marginBottom: '16px', pageBreakInside: 'avoid'}}>
+          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '2px'}}>
             Professional Experience
           </h2>
+          <hr style={{
+            border: 'none',
+            borderTop: '1px solid #000',
+            margin: '0 0 8px 0',
+            padding: 0,
+            height: 0,
+            backgroundColor: 'transparent'
+          }} />
           <div>
             {resumeData.experiences.map((exp, index) => (
-              <div key={exp.id} className={index > 0 ? "mt-3" : ""}>
-                <div style={{marginBottom: '2px'}}>
-                  <strong>{exp.company}</strong>
-                  {exp.company && exp.role && " / "}
-                  {exp.role}
-                  <div style={{fontSize: '10px', fontStyle: 'italic', color: '#666', marginTop: '1px'}}>
+              <div key={exp.id} style={{marginBottom: index < resumeData.experiences.length - 1 ? '8px' : '0'}}>
+                <div style={{marginBottom: '3px'}}>
+                  <div style={{display: 'inline-block', width: '70%'}}>
+                    <strong>{exp.company}</strong>
+                    {exp.company && exp.role && " / "}
+                    {exp.role}
+                  </div>
+                  <div style={{display: 'inline-block', width: '30%', textAlign: 'right', fontSize: '10px', fontStyle: 'italic', color: '#666'}}>
                     {exp.startDate} {exp.startDate && (exp.endDate || exp.current) && "–"} {exp.current ? "current" : exp.endDate}
                   </div>
                 </div>
                 {exp.bullets.length > 0 && (
-                  <ul style={{paddingLeft: '12px', margin: 0}}>
+                  <ul style={{paddingLeft: '12px', margin: '0 0 4px 0'}}>
                     {exp.bullets.map((bullet, bulletIndex) => (
                       bullet.trim() && <li key={bulletIndex} style={{marginBottom: '1px'}}>{bullet}</li>
                     ))}
@@ -84,17 +94,27 @@ const ResumePreview = forwardRef<HTMLDivElement>((props, ref) => {
 
       {/* Education Section */}
       {hasContent(resumeData.education) && (
-        <section className="mb-3">
-          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '4px'}}>
+        <section style={{marginBottom: '16px', pageBreakInside: 'avoid'}}>
+          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '2px'}}>
             Education
           </h2>
+          <hr style={{
+            border: 'none',
+            borderTop: '1px solid #000',
+            margin: '0 0 8px 0',
+            padding: 0,
+            height: 0,
+            backgroundColor: 'transparent'
+          }} />
           <div>
-            {resumeData.education.map((edu) => (
-              <div key={edu.id} style={{marginBottom: '2px'}}>
-                <div>
-                  <strong>{edu.school}</strong>
-                  <div style={{fontSize: '11px'}}>{edu.degree}</div>
-                  <div style={{fontSize: '10px', fontStyle: 'italic', color: '#666'}}>
+            {resumeData.education.map((edu, index) => (
+              <div key={edu.id} style={{marginBottom: index < resumeData.education.length - 1 ? '6px' : '0'}}>
+                <div style={{marginBottom: '2px'}}>
+                  <div style={{display: 'inline-block', width: '70%'}}>
+                    <strong>{edu.school}</strong>
+                    <div style={{fontSize: '11px'}}>{edu.degree}</div>
+                  </div>
+                  <div style={{display: 'inline-block', width: '30%', textAlign: 'right', fontSize: '10px', fontStyle: 'italic', color: '#666'}}>
                     {edu.startDate} {edu.startDate && edu.endDate && "–"} {edu.endDate}
                   </div>
                 </div>
@@ -106,15 +126,23 @@ const ResumePreview = forwardRef<HTMLDivElement>((props, ref) => {
 
       {/* Projects & Achievements Section */}
       {hasContent(resumeData.projects) && (
-        <section className="mb-3">
-          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '4px'}}>
+        <section style={{marginBottom: '16px', pageBreakInside: 'avoid'}}>
+          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '2px'}}>
             Projects & Achievements
           </h2>
+          <hr style={{
+            border: 'none',
+            borderTop: '1px solid #000',
+            margin: '0 0 8px 0',
+            padding: 0,
+            height: 0,
+            backgroundColor: 'transparent'
+          }} />
           <div>
-            {resumeData.projects.map((project) => (
-              <div key={project.id} style={{marginBottom: '3px'}}>
+            {resumeData.projects.map((project, index) => (
+              <div key={project.id} style={{marginBottom: index < resumeData.projects.length - 1 ? '6px' : '0'}}>
                 <div><strong>{project.name}</strong></div>
-                <div style={{fontSize: '11px', marginLeft: '0px'}}>
+                <div style={{fontSize: '11px', marginTop: '1px'}}>
                   {project.description}
                 </div>
               </div>
@@ -125,10 +153,18 @@ const ResumePreview = forwardRef<HTMLDivElement>((props, ref) => {
 
       {/* Skills Section */}
       {hasContent(resumeData.skills) && (
-        <section className="mb-3">
-          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '4px'}}>
+        <section style={{marginBottom: '16px', pageBreakInside: 'avoid'}}>
+          <h2 style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '2px'}}>
             Skills
           </h2>
+          <hr style={{
+            border: 'none',
+            borderTop: '1px solid #000',
+            margin: '0 0 8px 0',
+            padding: 0,
+            height: 0,
+            backgroundColor: 'transparent'
+          }} />
           <div style={{fontSize: '11px'}}>
             {resumeData.skills.join(", ")}
           </div>

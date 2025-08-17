@@ -27,11 +27,11 @@ const Home: FC = () => {
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-2 sm:space-y-0">
                   <div>
                     <h2 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white">Live Preview</h2>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">A4 Format (210 × 297 mm) • 1 Page Only</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">A4 Format (210 × 297 mm) • 1 Page Only • ATS-Friendly Text</p>
                   </div>
-                  <DownloadButton resumeElementRef={resumeRef} />
+                  <DownloadButton />
                 </div>
-                <div className="bg-white border rounded-lg overflow-hidden">
+                <div className="bg-white border rounded-lg">
                   <ResumePreview ref={resumeRef} />
                 </div>
               </div>
