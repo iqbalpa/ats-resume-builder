@@ -26,21 +26,21 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
     // Set font to Arial (closest to Arial in jsPDF)
     pdf.setFont('helvetica', 'normal');
     
-    let yPosition = 20; // Start position from top
-    const leftMargin = 20; // More left margin for better spacing
-    const rightMargin = 190; // Adjusted right margin accordingly
-    const lineHeight = 4;
-    const sectionSpacing = 8;
+    let yPosition = 15; // Smaller top margin to match preview
+    const leftMargin = 15; // Smaller left margin to match preview
+    const rightMargin = 195; // Adjusted right margin
+    const lineHeight = 3;
+    const sectionSpacing = 6;
 
     // Helper function to add text with word wrap
     const addText = (text: string, x: number, y: number, options: any = {}) => {
-      const { fontSize = 11, fontStyle = 'normal', maxWidth = 170 } = options;
+      const { fontSize = 11, fontStyle = 'normal', maxWidth = 180 } = options; // Adjusted for smaller margins
       pdf.setFontSize(fontSize);
       pdf.setFont('helvetica', fontStyle);
       
       const lines = pdf.splitTextToSize(text, maxWidth);
       pdf.text(lines, x, y);
-      return y + (lines.length * (fontSize * 0.35)); // Return new y position
+      return y + (lines.length * (fontSize * 0.35)); // Tighter line spacing
     };
 
     // Helper function to add a horizontal line
@@ -53,8 +53,8 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
 
     // Header Section
     if (resumeData.header.name) {
-      yPosition = addText(resumeData.header.name, leftMargin, yPosition, { fontSize: 16, fontStyle: 'bold' });
-      yPosition += 2;
+      yPosition = addText(resumeData.header.name, leftMargin, yPosition, { fontSize: 16, fontStyle: 'bold' }); // Name: 16px to match preview
+      yPosition += 1;
     }
 
     // Contact Info
@@ -67,23 +67,24 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
     ].filter(Boolean).join(' | ');
     
     if (contactInfo) {
-      yPosition = addText(contactInfo, leftMargin, yPosition, { fontSize: 11 });
-      yPosition += sectionSpacing;
+      yPosition = addText(contactInfo, leftMargin, yPosition, { fontSize: 11 }); // Body: 11px
+      yPosition += 4; // Reduced space before first section
     }
 
     // Professional Experience Section
     if (resumeData.experiences && resumeData.experiences.length > 0) {
       yPosition = addText('Professional Experience', leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' });
+      yPosition -= 2.5; // Reduce space above horizontal line
       yPosition = addHorizontalLine(yPosition); // Line under title
-      yPosition += 6; // More space after line
+      yPosition += 5; // Less space after line to match preview
       
       resumeData.experiences.forEach((exp, index) => {
-        if (index > 0) yPosition += 6; // More space between experiences
+        if (index > 0) yPosition += 4; // Less space between experiences
         
         // Company and Role with dates on same line
         const jobTitle = `${exp.company}${exp.company && exp.role ? ' / ' : ''}${exp.role}`;
         if (jobTitle.trim()) {
-          yPosition = addText(jobTitle, leftMargin, yPosition, { fontSize: 11, fontStyle: 'bold' });
+          yPosition = addText(jobTitle, leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' }); // Item title: 12px
           
           // Dates (on same line, right-aligned)
           if (exp.startDate || exp.endDate || exp.current) {
@@ -93,34 +94,35 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
             const dateWidth = pdf.getTextWidth(dateText);
             pdf.text(dateText, rightMargin - dateWidth, yPosition - 4);
           }
-          yPosition += 2; // Small space after title line
+          yPosition += 0.5; // Small space after title line
         }
         
         // Bullet points
         if (exp.bullets && exp.bullets.length > 0) {
           exp.bullets.forEach(bullet => {
             if (bullet.trim()) {
-              yPosition += 3;
-              yPosition = addText(`• ${bullet}`, leftMargin + 5, yPosition, { fontSize: 11 });
+              yPosition += 1; // Reduced space between bullet points
+              yPosition = addText(`• ${bullet}`, leftMargin + 5, yPosition, { fontSize: 11 }); // Body: 11px
             }
           });
         }
       });
-      yPosition += sectionSpacing;
+      yPosition += 4; // Reduced space between sections
     }
 
     // Education Section
     if (resumeData.education && resumeData.education.length > 0) {
       yPosition = addText('Education', leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' });
+      yPosition -= 2.5; // Reduce space above horizontal line
       yPosition = addHorizontalLine(yPosition); // Line under title
-      yPosition += 6; // More space after line
+      yPosition += 5; // Less space after line to match preview
       
       resumeData.education.forEach((edu, index) => {
         if (index > 0) yPosition += 5;
         
         // School name with dates on same line
         if (edu.school) {
-          yPosition = addText(edu.school, leftMargin, yPosition, { fontSize: 11, fontStyle: 'bold' });
+          yPosition = addText(edu.school, leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' }); // Item title: 12px
           
           // Dates (on same line, right-aligned)
           if (edu.startDate || edu.endDate) {
@@ -134,42 +136,44 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
         
         // Degree on next line
         if (edu.degree) {
-          yPosition = addText(edu.degree, leftMargin, yPosition, { fontSize: 11 });
+          yPosition = addText(edu.degree, leftMargin, yPosition, { fontSize: 11 }); // Body: 11px
         }
         
         yPosition += 2; // Small space after education item
       });
-      yPosition += sectionSpacing;
+      yPosition += 4; // Reduced space between sections
     }
 
     // Projects & Achievements Section
     if (resumeData.projects && resumeData.projects.length > 0) {
       yPosition = addText('Projects & Achievements', leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' });
+      yPosition -= 2.5; // Reduce space above horizontal line
       yPosition = addHorizontalLine(yPosition); // Line under title
-      yPosition += 6; // More space after line
+      yPosition += 5; // Less space after line to match preview
       
       resumeData.projects.forEach((project, index) => {
         if (index > 0) yPosition += 3;
         
         if (project.name) {
-          yPosition = addText(project.name, leftMargin, yPosition, { fontSize: 11, fontStyle: 'bold' });
+          yPosition = addText(project.name, leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' }); // Item title: 12px
         }
         
         if (project.description) {
-          yPosition = addText(project.description, leftMargin, yPosition, { fontSize: 11 });
+          yPosition = addText(project.description, leftMargin, yPosition, { fontSize: 11 }); // Body: 11px
         }
       });
-      yPosition += sectionSpacing;
+      yPosition += 4; // Reduced space between sections
     }
 
     // Skills Section
     if (resumeData.skills && resumeData.skills.length > 0) {
       yPosition = addText('Skills', leftMargin, yPosition, { fontSize: 12, fontStyle: 'bold' });
+      yPosition -= 2.5; // Reduce space above horizontal line
       yPosition = addHorizontalLine(yPosition); // Line under title
-      yPosition += 6; // More space after line
+      yPosition += 5; // Less space after line to match preview
       
       const skillsText = resumeData.skills.join(', ');
-      yPosition = addText(skillsText, leftMargin, yPosition, { fontSize: 11 });
+      yPosition = addText(skillsText, leftMargin, yPosition, { fontSize: 11 }); // Body: 11px
     }
 
     // Save the PDF
