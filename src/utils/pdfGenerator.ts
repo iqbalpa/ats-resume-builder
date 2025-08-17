@@ -57,19 +57,58 @@ export const generatePDF = async (resumeData: ResumeData, options: PDFOptions = 
       yPosition += 1;
     }
 
-    // Contact Info
-    const contactInfo = [
-      resumeData.header.location,
-      resumeData.header.email, 
-      resumeData.header.phone,
-      resumeData.header.linkedin,
-      resumeData.header.github
-    ].filter(Boolean).join(' | ');
+      // Contact Info
+  const contactInfoParts = [
+    resumeData.header.location,
+    resumeData.header.email,
+    resumeData.header.phone,
+    resumeData.header.linkedin,
+    resumeData.header.github
+  ].filter(Boolean);
+
+  if (contactInfoParts.length > 0) {
+    let currentX = leftMargin;
+    const lineY = yPosition;
     
-    if (contactInfo) {
-      yPosition = addText(contactInfo, leftMargin, yPosition, { fontSize: 11 }); // Body: 11px
-      yPosition += 4; // Reduced space before first section
-    }
+    contactInfoParts.forEach((part, index) => {
+      const isLast = index === contactInfoParts.length - 1;
+      const separator = isLast ? '' : ' | ';
+      const fullText = part + separator;
+      
+      // Check if this is LinkedIn or GitHub
+      const isLinkedIn = part.includes('linkedin.com');
+      const isGitHub = part.includes('github.com');
+      
+      if (isLinkedIn || isGitHub) {
+        // Add as clickable link with display text
+        const displayText = isLinkedIn ? 'LinkedIn' : 'GitHub';
+        pdf.setFontSize(11);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(0, 0, 255); // Blue color for links
+        pdf.textWithLink(displayText, currentX, lineY, { url: part.startsWith('http') ? part : `https://${part}` });
+        pdf.setTextColor(0, 0, 0); // Reset to black
+        
+        // Add separator in black
+        if (!isLast) {
+          const displayWidth = pdf.getTextWidth(displayText);
+          pdf.text(' | ', currentX + displayWidth, lineY);
+          currentX += pdf.getTextWidth(displayText + separator);
+        } else {
+          currentX += pdf.getTextWidth(displayText);
+        }
+      } else {
+        // Add as regular text
+        pdf.setFontSize(11);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(0, 0, 0);
+        pdf.text(fullText, currentX, lineY);
+        currentX += pdf.getTextWidth(fullText);
+      }
+    });
+    
+    yPosition = lineY + (11 * 0.35); // Move to next line
+    yPosition += 4; // Reduced space before first section
+  }
 
     // Professional Experience Section
     if (resumeData.experiences && resumeData.experiences.length > 0) {
